@@ -1,6 +1,25 @@
 def find_gaps(intervals):
     # Write your solution here!
-    pass
+    # Input: tuple of tuples, not sorted
+    # Output: sorted tuple of gaps 
+    # If there no gap, return empty tuple
+    
+    # Pseudo code:
+    # Sort the intervals
+    # Initialize result variable, add the gap between the second element of the first tuple and the first elem. of the second, and go on
+    # Return result
+
+    result = []
+
+    sorted_intervals = sorted(intervals)
+
+    for i in range(len(sorted_intervals) - 1):
+        current = sorted_intervals[i]
+        next = sorted_intervals[i + 1]
+        if current[1] < next[0]:
+            result.append((current[1], next[0]))
+ 
+    return tuple(result)
 
 intervals_1 = (
     (5, 10),
@@ -9,6 +28,7 @@ intervals_1 = (
     (20, 25),
     (27, 30),
 )
+
 assert find_gaps(intervals_1) == ((10, 12), (15, 16), (25, 27))
 
 intervals_2 = (
